@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Phone Hub Store – Best deals on new, used & refurbished phones." />
+  <meta name="theme-color" content="#2563EB" />
+  <title>Phone Hub Store</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" class="logo" onclick="showPage('home')">
+      <span class="logo-icon">📱</span>
+      <span class="logo-text">Phone<b>Hub</b></span>
+    </a>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search phones…" oninput="handleSearch(this.value)" />
+      <span class="search-icon">🔍</span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme" id="themeBtn">🌙</button>
+      <button class="icon-btn admin-btn" onclick="showPage('admin')" title="Admin">⚙️</button>
+    </div>
+  </div>
+  <!-- Search Results Dropdown -->
+  <div class="search-dropdown" id="searchDropdown"></div>
+</header>
+
+<!-- ===== PAGES ===== -->
+<main id="app">
+
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page active">
+
+    <!-- Hero Banner -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">🔥 Hot Deals This Week</div>
+        <h1 class="hero-title">Find Your<br/><span class="accent">Perfect Phone</span></h1>
+        <p class="hero-sub">New · Used · Refurbished — Trusted Quality</p>
+        <div class="hero-btns">
+          <button class="btn btn-primary" onclick="showPage('listing')">Browse Phones</button>
+          <button class="btn btn-outline" onclick="openWhatsApp('General Inquiry')">Chat on WhatsApp</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="pm-icons">
+              <span>📷</span><span>🎵</span><span>📍</span><span>💬</span>
+              <span>🌐</span><span>🔋</span><span>⚙️</span><span>📊</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+      <div class="stat"><b>500+</b><span>Phones Sold</span></div>
+      <div class="stat"><b>4.8★</b><span>Rating</span></div>
+      <div class="stat"><b>2yr</b><span>In Business</span></div>
+      <div class="stat"><b>100%</b><span>Verified</span></div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="categories-grid">
+        <button class="cat-card" onclick="filterAndGo('iPhone')">
+          <span class="cat-icon">🍎</span>
+          <span class="cat-name">iPhone</span>
+        </button>
+        <button class="cat-card" onclick="filterAndGo('Android')">
+          <span class="cat-icon">🤖</span>
+          <span class="cat-name">Android</span>
+        </button>
+        <button class="cat-card" onclick="filterAndGo('Budget')">
+          <span class="cat-icon">💰</span>
+          <span class="cat-name">Budget</span>
+        </button>
+        <button class="cat-card" onclick="filterAndGo('Premium')">
+          <span class="cat-icon">💎</span>
+          <span class="cat-name">Premium</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Hot Deals -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">🔥 Hot Deals</h2>
+        <button class="view-all" onclick="showPage('listing')">View All →</button>
+      </div>
+      <div class="products-row" id="hotDealsRow"></div>
+    </section>
+
+    <!-- Recently Added -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">🆕 Recently Added</h2>
+        <button class="view-all" onclick="showPage('listing')">View All →</button>
+      </div>
+      <div class="products-row" id="recentRow"></div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="section trust-section">
+      <h2 class="section-title">Why Customers Love Us</h2>
+      <div class="reviews-grid" id="reviewsGrid"></div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section why-section">
+      <h2 class="section-title">Our Promise</h2>
+      <div class="promise-grid">
+        <div class="promise-card"><span>✅</span><b>Quality Checked</b><p>Every phone tested before sale</p></div>
+        <div class="promise-card"><span>🔄</span><b>Easy Returns</b><p>7-day return policy</p></div>
+        <div class="promise-card"><span>🔒</span><b>Secure Payment</b><p>UPI / Cash / EMI accepted</p></div>
+        <div class="promise-card"><span>📞</span><b>24/7 Support</b><p>WhatsApp us anytime</p></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact-section">
+      <h2 class="section-title">Visit Our Store</h2>
+      <div class="contact-card">
+        <div class="contact-info">
+          <p>📍 Shop No. 12, Main Market, Bareilly, UP 243001</p>
+          <p>📞 <a href="tel:+919876543210">+91 98765 43210</a></p>
+          <p>🕐 Mon–Sat: 10am – 8pm</p>
+          <p>💬 <a href="#" onclick="openWhatsApp('General Inquiry')">Chat on WhatsApp</a></p>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-home -->
+
+  <!-- LISTING PAGE -->
+  <div id="page-listing" class="page">
+    <div class="listing-layout">
+
+      <!-- Filters Sidebar -->
+      <aside class="filters-sidebar" id="filtersSidebar">
+        <div class="filters-header">
+          <h3>Filters</h3>
+          <button class="clear-btn" onclick="clearFilters()">Clear All</button>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Brand</label>
+          <div class="filter-options" id="brandFilters"></div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Condition</label>
+          <div class="filter-options">
+            <label class="check-label"><input type="checkbox" value="New" onchange="applyFilters()"> New</label>
+            <label class="check-label"><input type="checkbox" value="Used" onchange="applyFilters()"> Used</label>
+            <label class="check-label"><input type="checkbox" value="Refurbished" onchange="applyFilters()"> Refurbished</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Storage</label>
+          <div class="filter-options" id="storageFilters"></div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Price Range</label>
+          <div class="price-range">
+            <input type="range" id="priceRange" min="0" max="150000" step="1000" value="150000" oninput="updatePriceFilter(this.value)" />
+            <div class="price-labels">
+              <span>₹0</span>
+              <span id="priceVal">₹1,50,000</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Products Area -->
+      <div class="listing-main">
+        <div class="listing-topbar">
+          <button class="filter-toggle-btn" onclick="toggleFilters()">⚙️ Filters</button>
+          <span id="resultCount" class="result-count"></span>
+          <select class="sort-select" onchange="applySort(this.value)">
+            <option value="">Sort by</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="empty-state" id="emptyState" style="display:none">
+          <span>😔</span>
+          <p>No phones match your filters.</p>
+          <button class="btn btn-outline" onclick="clearFilters()">Reset Filters</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- /page-listing -->
+
+  <!-- DETAIL PAGE -->
+  <div id="page-detail" class="page">
+    <div class="detail-container" id="detailContainer"></div>
+  </div>
+
+  <!-- ADMIN PAGE -->
+  <div id="page-admin" class="page">
+    <div class="admin-container">
+      <!-- Auth Gate -->
+      <div id="adminAuth" class="admin-auth">
+        <h2>Admin Access</h2>
+        <input type="password" id="adminPass" class="admin-input" placeholder="Enter admin password" />
+        <button class="btn btn-primary" onclick="checkAdminPass()">Enter</button>
+        <p class="admin-hint">Default: <code>phonehub2024</code></p>
+      </div>
+
+      <!-- Admin Panel -->
+      <div id="adminPanel" style="display:none">
+        <div class="admin-header">
+          <h2>Admin Panel</h2>
+          <button class="btn btn-outline" onclick="showAdminForm(null)">+ Add Phone</button>
+        </div>
+
+        <div class="admin-products" id="adminProducts"></div>
+
+        <!-- Add/Edit Form -->
+        <div id="adminForm" class="admin-form" style="display:none">
+          <h3 id="formTitle">Add New Phone</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Phone Name *</label>
+              <input type="text" id="fName" class="admin-input" placeholder="e.g. iPhone 13 Pro" />
+            </div>
+            <div class="form-group">
+              <label>Brand *</label>
+              <select id="fBrand" class="admin-input">
+                <option>Apple</option><option>Samsung</option><option>OnePlus</option>
+                <option>Xiaomi</option><option>Realme</option><option>Vivo</option>
+                <option>OPPO</option><option>Google</option><option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Price (₹) *</label>
+              <input type="number" id="fPrice" class="admin-input" placeholder="e.g. 45000" />
+            </div>
+            <div class="form-group">
+              <label>Condition *</label>
+              <select id="fCondition" class="admin-input">
+                <option>New</option><option>Used</option><option>Refurbished</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Storage</label>
+              <input type="text" id="fStorage" class="admin-input" placeholder="e.g. 128GB" />
+            </div>
+            <div class="form-group">
+              <label>RAM</label>
+              <input type="text" id="fRam" class="admin-input" placeholder="e.g. 6GB" />
+            </div>
+            <div class="form-group">
+              <label>Battery Health % (iPhone)</label>
+              <input type="number" id="fBattery" class="admin-input" placeholder="e.g. 89" min="0" max="100" />
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="fCategory" class="admin-input">
+                <option>iPhone</option><option>Android</option><option>Budget</option><option>Premium</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>Image URL</label>
+              <input type="text" id="fImage" class="admin-input" placeholder="https://… or leave blank for default" />
+            </div>
+            <div class="form-group full">
+              <label>Description</label>
+              <textarea id="fDesc" class="admin-input" rows="3" placeholder="Short description of this phone…"></textarea>
+            </div>
+            <div class="form-group full">
+              <label>Specs (one per line: Key: Value)</label>
+              <textarea id="fSpecs" class="admin-input" rows="5" placeholder="Display: 6.1-inch OLED&#10;Processor: A15 Bionic&#10;Camera: 12MP + 12MP"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="check-label">
+                <input type="checkbox" id="fHotDeal" /> Mark as Hot Deal
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="check-label">
+                <input type="checkbox" id="fAvailable" checked /> Available for Sale
+              </label>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="saveProduct()">Save Phone</button>
+            <button class="btn btn-outline" onclick="document.getElementById('adminForm').style.display='none'">Cancel</button>
+          </div>
+          <input type="hidden" id="fEditId" />
+        </div>
+      </div>
+    </div>
+  </div><!-- /page-admin -->
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="showPage('home')" id="nav-home">
+    <span>🏠</span><span>Home</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('listing')" id="nav-listing">
+    <span>📱</span><span>Phones</span>
+  </button>
+  <button class="nav-btn" onclick="openWhatsApp('General Inquiry')" id="nav-whatsapp">
+    <span>💬</span><span>WhatsApp</span>
+  </button>
+  <button class="nav-btn" onclick="showPage('admin')" id="nav-admin">
+    <span>⚙️</span><span>Admin</span>
+  </button>
+</nav>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(r => console.log('SW registered'))
+        .catch(e => console.log('SW failed', e));
+    });
+  }
+</script>
+</body>
+</html>
