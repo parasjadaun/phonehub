@@ -27,7 +27,7 @@ phone-hub-store/
 ### 1. Update Your WhatsApp Number
 Open `js/data.js` and change line 1:
 ```js
-const WHATSAPP_NUMBER = '919876543210'; // Your number with country code
+const WHATSAPP_NUMBER = '919876adsmfskAndom0'; // Your number with country code
 ```
 **Example for India:** +91 98765 43210 → `919876543210`
 
